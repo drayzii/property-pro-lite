@@ -2,18 +2,20 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store/index';
-import HelloWorld from './components/helloWorld';
 import NotFound from './components/notFound';
-import './index.scss';
+import LandingPage from './components/landingPage';
+import Footer from './components/footer';
+import './styles/index.scss';
 
 const App = () => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/hello-world" component={HelloWorld} />
+        <Route exact path="/" component={LandingPage} />
         <Route component={NotFound} />
       </Switch>
     </Router>
+    <Footer />
   </Provider>
 );
 

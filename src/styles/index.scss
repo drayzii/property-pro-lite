@@ -1,0 +1,74 @@
+@media only screen and (max-width: 560px) {
+    @import "small-default";
+}
+
+@media only screen and (min-width: 560px) {
+    @import "medium";
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body{   
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    background-color: #FFF2F2;
+}
+
+.cool{
+    font-size: 100px;
+}
+
+#contentform h2, #contentwrapper h2{
+    color:#400711;
+}
+
+#contentform p{
+    color: #400711;
+}
+
+button{
+    border:none;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.button1{
+    background-color: #BF3945;
+    color: #fff;
+    transition: all .3s;
+}
+
+.button1:hover{
+    cursor: pointer;
+    background-color: rgb(172, 50, 60);
+}
+
+.button2{
+    background-color: rgb(177, 35, 73);
+    color: #fff;
+    transition: all .3s;
+}
+
+.button2:hover{
+    cursor: pointer;
+    background-color: rgb(151, 30, 63);
+}
+
+nav .toggle{
+    display: block;
+    width:20%;
+    float: right;
+    margin-top: 10px;
+}
+
+.toggle div{
+    cursor: pointer;
+}
+
+footer p{
+    padding: 0 20px;
+}
