@@ -72,3 +72,44 @@ nav .toggle{
 footer p{
     padding: 0 20px;
 }
+
+#about{
+    margin: 15% 10%;
+    text-align: center;
+    color:#400711;
+    font-size:2rem;
+}
+
+form{
+    color:#400711;
+}
+
+
+form button{
+    width:200px;
+}
+
+a{
+    text-decoration: none;
+    color:#F23847;
+}
+
+a:hover{
+    text-decoration: none;
+    color:#BF3945;
+}
+
+#property{
+    padding-bottom: 50px;
+}
+
+.contentwrapper{
+    text-align: center;
+}
+.property{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 15px;
+    box-shadow: 5px 5px 4px #888888;
+}

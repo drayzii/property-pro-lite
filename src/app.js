@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store/index';
 import NotFound from './components/notFound';
 import LandingPage from './components/landingPage';
-import Footer from './components/footer';
+import Signup from './components/signup';
 import './styles/index.scss';
 
 const App = () => (
@@ -12,10 +12,10 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/signup" component={Signup} />
         <Route component={NotFound} />
       </Switch>
     </Router>
-    <Footer />
   </Provider>
 );
 

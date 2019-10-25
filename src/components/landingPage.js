@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header1';
+import Footer from './footer1';
 
 class LandingPage extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class LandingPage extends React.Component {
             <a href="/"><button type="button" className="button2">Log In</button></a>
           </div>
         </section>
+        <Footer />
       </>
     );
   }

@@ -80,3 +80,18 @@ nav li{
     width: 100%;
     background-color: #eee; 
 }
+
+form input, form select{
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.property{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin: 20px 20%;
+}
