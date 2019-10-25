@@ -5,6 +5,7 @@ import store from './store/index';
 import NotFound from './components/notFound';
 import LandingPage from './components/landingPage';
 import Signup from './components/signup';
+import Signin from './components/signin';
 import './styles/index.scss';
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/signin" component={Signin} />
         <Route component={NotFound} />
       </Switch>
     </Router>
