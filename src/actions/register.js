@@ -17,9 +17,7 @@ const registerUser = (user) => async (dispatch) => {
       address,
     } = user;
     if (confirmPassword !== password) {
-      return toast.error('Passwords do not match', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      throw new Error('Passwords do not match');
     }
     const response = await axios.post(`${BACKEND_URL}/auth/signup`, {
       firstName,
@@ -42,7 +40,8 @@ const registerUser = (user) => async (dispatch) => {
       type: AUTH_ERROR,
       error,
     });
-    toast.error(error.response.data.error, {
+    const displayedError = (!error.response) ? error.message : error.response.data.error;
+    toast.error(displayedError, {
       position: toast.POSITION.TOP_RIGHT,
     });
   }

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unused-state */
 import React from 'react';
@@ -6,6 +7,7 @@ import { connect } from 'react-redux';
 import registerAction from '../actions/register';
 import Header from './header1';
 import Footer from './footer2';
+import Button from './button';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -18,9 +20,20 @@ class Signup extends React.Component {
       confirmPassword: null,
       phoneNumber: null,
       address: null,
+      buttonDisabled: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { auth } = this.props;
+    const { buttonDisabled } = this.state;
+    if (auth.error === true && buttonDisabled === true) {
+      this.setState({
+        buttonDisabled: false,
+      });
+    }
   }
 
   handleChange(e) {
@@ -33,9 +46,13 @@ class Signup extends React.Component {
     e.preventDefault();
     const { register } = this.props;
     register(this.state);
+    this.setState({
+      buttonDisabled: true,
+    });
   }
 
   render() {
+    const { buttonDisabled } = this.state;
     return (
       <>
         <Header />
@@ -56,7 +73,7 @@ class Signup extends React.Component {
             <br />
             <input type="address" id="address" name="address" placeholder="Address" onChange={this.handleChange} required />
             <br />
-            <button type="submit" className="button1">Create Account</button>
+            <Button classes="button1" disabled={buttonDisabled} text="Sign up" text2="Signing up" />
           </form>
           <p>
             Already have an account?
@@ -71,11 +88,13 @@ class Signup extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({ auth: state.auth });
+
 const mapDispatchToProps = (dispatch) => ({
   register: (user) => dispatch(registerAction(user)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Signup);
