@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from './header1';
 import Footer from './footer1';
 
@@ -19,7 +20,7 @@ class Signup extends React.Component {
           <p>
             New member?
             {' '}
-            <a href="signup.html">Sign Up here</a>
+            <Link to="/sign-up">Sign Up here</Link>
             .
           </p>
         </section>

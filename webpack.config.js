@@ -36,4 +36,7 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [htmlPlugin],
+  node: {
+    fs: 'empty',
+  },
 };
