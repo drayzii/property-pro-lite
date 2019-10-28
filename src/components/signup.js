@@ -34,6 +34,11 @@ class Signup extends React.Component {
         buttonDisabled: false,
       });
     }
+    if (auth.token) {
+      localStorage.setItem('token', auth.token);
+      const { history } = this.props;
+      history.push('/');
+    }
   }
 
   handleChange(e) {
