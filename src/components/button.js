@@ -3,7 +3,7 @@ import React from 'react';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class LandingPage extends React.Component {
+class Button extends React.Component {
   render() {
     const {
       classes, disabled, text, text2,
@@ -22,4 +22,4 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default Button;

@@ -8,6 +8,7 @@ import NotFound from './components/notFound';
 import LandingPage from './components/landingPage';
 import Signup from './components/signup';
 import Signin from './components/signin';
+import Properties from './components/allProperties';
 import './styles/index.scss';
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/sign-up" component={Signup} />
         <Route exact path="/sign-in" component={Signin} />
+        <Route exact path="/properties" component={Properties} />
         <Route component={NotFound} />
       </Switch>
     </Router>
