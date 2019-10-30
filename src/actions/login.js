@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { AUTH_SUCCESS, AUTH_ERROR } from './action-types';
-import { BACKEND_URL } from '../config/index';
+import db from '../config/dbCall';
 
 const loginUser = (user) => async (dispatch) => {
   try {
@@ -9,10 +8,13 @@ const loginUser = (user) => async (dispatch) => {
       email,
       password,
     } = user;
-    const response = await axios.post(`${BACKEND_URL}/auth/signin`, {
+    const response = await db.post('/auth/signin', {
       email,
       password,
     });
+    if (response.data.data.status !== 200) {
+      throw new Error(response.data.data.error);
+    }
     dispatch({
       type: AUTH_SUCCESS,
       response,
@@ -25,7 +27,8 @@ const loginUser = (user) => async (dispatch) => {
       type: AUTH_ERROR,
       error,
     });
-    toast.error(error.response.data.error, {
+    const displayedError = (!error.response) ? error.message : error.response.data.error;
+    toast.error(displayedError, {
       position: toast.POSITION.TOP_RIGHT,
     });
   }

@@ -1,8 +1,7 @@
 /* eslint-disable consistent-return */
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { AUTH_SUCCESS, AUTH_ERROR } from './action-types';
-import { BACKEND_URL } from '../config/index';
+import db from '../config/dbCall';
 
 const registerUser = (user) => async (dispatch) => {
   try {
@@ -19,7 +18,7 @@ const registerUser = (user) => async (dispatch) => {
     if (confirmPassword !== password) {
       throw new Error('Passwords do not match');
     }
-    const response = await axios.post(`${BACKEND_URL}/auth/signup`, {
+    const response = await db.post('/auth/signup', {
       firstName,
       lastName,
       userName,
