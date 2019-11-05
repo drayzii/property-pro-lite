@@ -12,9 +12,6 @@ const loginUser = (user) => async (dispatch) => {
       email,
       password,
     });
-    if (response.data.data.status !== 200) {
-      throw new Error(response.data.data.error);
-    }
     dispatch({
       type: AUTH_SUCCESS,
       response,

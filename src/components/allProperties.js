@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getProperties } from '../actions/properties';
 import Header from './header2';
 import Footer from './footer2';
-import Property from './property';
+import Property from './propertyComponent';
 
 class AllProperties extends React.Component {
   componentDidMount() {

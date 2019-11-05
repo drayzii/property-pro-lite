@@ -1,55 +1,148 @@
+/* eslint-disable react/no-deprecated */
+/* eslint-disable camelcase */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from './button';
+import { connect } from 'react-redux';
+import { getProperty } from '../actions/property';
+import Header from './header2';
+import Footer from './footer2';
 import { DEFAULT_IMAGE } from '../config';
 
-class Property extends React.Component {
+class AllProperties extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        OwnerName: 'Loading...',
+        OwnerEmail: 'Loading...',
+        OwnerPhoneNumber: 'Loading...',
+        address: 'Loading...',
+        city: 'Loading...',
+        id: null,
+        price: 'Loading...',
+        state: 'Loading...',
+        status: 'Loading...',
+        type: 'Loading...',
+        imageUrrl: 'Loading...',
+      },
+    };
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.getProperty({ id });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { data } = nextProps.property;
+    this.setState({ data });
+  }
+
   render() {
-    const { property } = this.props;
-    const color = (property.status !== 'Available') ? 'red' : 'green';
+    const {
+      OwnerName,
+      OwnerEmail,
+      OwnerPhoneNumber,
+      address,
+      city,
+      price,
+      state,
+      status,
+      type,
+      image_url,
+    } = this.state.data;
+    const color = (status !== 'Available') ? 'red' : 'green';
     return (
-      <div className="property">
-        <div className="propertyimg">
-          <img src={property.image_url || DEFAULT_IMAGE} height="200" width="200" alt="" />
-        </div>
-        <div className="propertydetails">
-          <h3 className="propertytitle">
-            <Link to="/">
-              {property.type.toUpperCase()}
+      <>
+        <Header />
+        <div className="contentwrapper">
+          <section id="property">
+            <h2 className="propertytitle">
+              {type.toUpperCase()}
               {' '}
               in
               {' '}
-              {property.city}
-            </Link>
-          </h3>
-          <p>
-            Status:
-            <span style={{ color }} className="propertyaddress">
-              {' '}
-              {property.status}
-            </span>
-            <br />
-            <span className="propertyaddress">
-              Address:
-              {' '}
-              {property.address}
-            </span>
-            <br />
-            <span className="propertyprice">
-              $
-              {' '}
-              {property.price}
-            </span>
-            <br />
-          </p>
-          <div className="action">
-            <Link to="/"><Button disabled={false} classes="button1" text="View" /></Link>
-          </div>
+              {city}
+            </h2>
+            <div className="propertyimg">
+              <img src={image_url || DEFAULT_IMAGE} alt="" height="300" width="300" />
+            </div>
+            <div className="propertydetails">
+              <p>
+                <span className="propertyaddress">
+                  State:
+                  {' '}
+                  {state}
+                </span>
+                <br />
+                <span className="propertyaddress">
+                  City:
+                  {' '}
+                  {city}
+                </span>
+                <br />
+                <span className="propertyaddress">
+                  Address:
+                  {' '}
+                  {address}
+                </span>
+                <br />
+                <span className="propertyprice">
+                  Price: $
+                  {price}
+                </span>
+                <br />
+                <span style={{ color }} className="propertystatus">
+                  Status:
+                  {' '}
+                  <span className="available">{status}</span>
+                </span>
+                <br />
+              </p>
+            </div>
+            <div className="propertyowner">
+              <h3 className="ownertitle">Owner Details</h3>
+              <p>
+                <span className="owneremail">
+                  Names:
+                  {' '}
+                  {OwnerName}
+                </span>
+                <br />
+                <span className="owneremail">
+                  Email:
+                  {' '}
+                  {OwnerEmail}
+                </span>
+                <br />
+                <span className="ownerphone">
+                  Phone:
+                  {' '}
+                  {OwnerPhoneNumber}
+                </span>
+                <br />
+              </p>
+            </div>
+            <div className="action">
+              <button type="button" className="button3">&#9872; Report</button>
+            </div>
+          </section>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 }
 
-export default Property;
+const mapStateToProps = ({ property }) => ({ property });
+
+const mapDispatchToProps = (dispatch) => ({
+  getProperty: (data) => dispatch(getProperty(data)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AllProperties);
