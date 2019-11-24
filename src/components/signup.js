@@ -37,7 +37,7 @@ class Signup extends React.Component {
     if (auth.token) {
       localStorage.setItem('token', auth.token);
       const { history } = this.props;
-      history.push('/');
+      history.push('/properties');
     }
   }
 

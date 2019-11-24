@@ -1,9 +1,22 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-useless-constructor */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './header1';
 import Footer from './footer1';
 
 class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      const { history } = this.props;
+      history.push('/properties');
+    }
+  }
+
   render() {
     return (
       <>

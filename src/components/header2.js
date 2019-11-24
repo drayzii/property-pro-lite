@@ -1,7 +1,19 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Header2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+  }
+
   render() {
     return (
       <header>
@@ -19,8 +31,7 @@ class Header2 extends React.Component {
           </div>
           <div id="nav-wrapper" className="nav-wrapper">
             <ul>
-              <li><Link to="/properties">&#43; New Advert</Link></li>
-              <li><Link to="/properties">Log Out</Link></li>
+              <li><Link to="#" onClick={this.logOut}>Log Out</Link></li>
             </ul>
           </div>
         </nav>

@@ -31,11 +31,19 @@ class AllProperties extends React.Component {
   }
 
   componentDidMount() {
+    if (!localStorage.getItem('token')) {
+      const { history } = this.props;
+      return history.push('/');
+    }
     const { id } = this.props.match.params;
-    this.props.getProperty({ id });
+    return this.props.getProperty({ id });
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!localStorage.getItem('token')) {
+      const { history } = this.props;
+      history.push('/');
+    }
     const { data } = nextProps.property;
     this.setState({ data });
   }

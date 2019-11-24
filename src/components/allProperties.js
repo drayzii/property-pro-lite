@@ -9,7 +9,18 @@ import Property from './propertyComponent';
 
 class AllProperties extends React.Component {
   componentDidMount() {
-    this.props.getProperties();
+    if (!localStorage.getItem('token')) {
+      const { history } = this.props;
+      return history.push('/');
+    }
+    return this.props.getProperties();
+  }
+
+  componentDidUpdate() {
+    if (!localStorage.getItem('token')) {
+      const { history } = this.props;
+      history.push('/');
+    }
   }
 
   render() {
